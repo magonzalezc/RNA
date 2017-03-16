@@ -244,7 +244,7 @@ public class Rna{
 		//conectando unas con otras. Es decir, se contruye 
 		//la  RNA (red neuronal artificial)
 
-		//añadiremos las neuronas tipo BIAS en la capa de entrada y en 
+		//aï¿½adiremos las neuronas tipo BIAS en la capa de entrada y en 
 		//la oculta
 
 		//capa de entrada
@@ -340,10 +340,10 @@ public class Rna{
 
 
 
-			double[] señal_error_salida=new double[capa_salida.length+1];
+			double[] senal_error_salida=new double[capa_salida.length+1];
 			double[][] grad_local_salida=new double[capa_oculta.length+1][capa_salida.length+1];
 
-			double[] señal_error_oculta=new double[capa_oculta.length+1];
+			double[] senal_error_oculta=new double[capa_oculta.length+1];
 			double[][]grad_local_oculta=new double[capa_entrada.length+1][capa_oculta.length+1];
 
 
@@ -361,7 +361,7 @@ public class Rna{
 				double[] salida_deseada=extraerSalidas(linea);
 				//ejecutar red neuronal
 				run(patron);
-				//calcular las señales de error asociadas y los gradientes
+				//calcular las seï¿½ales de error asociadas y los gradientes
 
 
 
@@ -370,12 +370,12 @@ public class Rna{
 				{  
 					//para cada neurona de salida hay que calcular tantos
 					//gradientes locales como sinapsis con las neuronas de la capa oculta
-					señal_error_salida[k]=(salida_deseada[k]-capa_salida[k].out)* capa_salida[k].out*(1- capa_salida[k].out);
+					senal_error_salida[k]=(salida_deseada[k]-capa_salida[k].out)* capa_salida[k].out*(1- capa_salida[k].out);
 
 					for (int j=0;j<capa_oculta.length;j++)
 					{
 
-						grad_local_salida[j][k]+=ritmo_aprendizaje*señal_error_salida[k]*capa_oculta[j].out;
+						grad_local_salida[j][k]+=ritmo_aprendizaje*senal_error_salida[k]*capa_oculta[j].out;
 					}
 				}
 
@@ -387,12 +387,12 @@ public class Rna{
 					{
 						//      traza ("[k][j]"+k+" "+j+"");
 						//      traza (""+oculta_salida[j][k].w);
-						suma+=señal_error_salida[k]*oculta_salida[j][k].w;
+						suma+=senal_error_salida[k]*oculta_salida[j][k].w;
 					}
-					señal_error_oculta[j]=suma*capa_oculta[j].out*(1-capa_oculta[j].out);
+					senal_error_oculta[j]=suma*capa_oculta[j].out*(1-capa_oculta[j].out);
 					for (int i=0;i<capa_entrada.length;i++)
 					{
-						grad_local_oculta[i][j]+=ritmo_aprendizaje*señal_error_oculta[j]*capa_entrada[i].out;
+						grad_local_oculta[i][j]+=ritmo_aprendizaje*senal_error_oculta[j]*capa_entrada[i].out;
 
 					}
 				}
@@ -439,8 +439,8 @@ public class Rna{
 			//el problema es que no se determinar un umbral razonable a priori
 			//para el error. Vamos a usar el valor promedio, pues no depende
 			//del numero de patrones
-			//osea , trabajamos con el valor promedio por epoca del error cuadrático medio
-			//ojo:tb pienso que habría que dividir entre el numero de salidas, puesto que a
+			//osea , trabajamos con el valor promedio por epoca del error cuadrï¿½tico medio
+			//ojo:tb pienso que habrï¿½a que dividir entre el numero de salidas, puesto que a
 			//mas salidas, mayor es la funcion coste, aunque los libros de esta materia ni siquiera dividen
 			//entre p (he encontrado un articulo donde si que lo hacen)
 
@@ -508,10 +508,10 @@ public class Rna{
 		p_exito2=0;
 
 
-		double[] señal_error_salida=new double[capa_salida.length+1];
+		double[] senal_error_salida=new double[capa_salida.length+1];
 		//double[][] grad_local_salida=new double[capa_oculta.length+1][capa_salida.length+1];
 
-		double[] señal_error_oculta=new double[capa_oculta.length+1];
+		double[] senal_error_oculta=new double[capa_oculta.length+1];
 		//double[][]grad_local_oculta=new double[capa_entrada.length+1][capa_oculta.length+1];
 
 
@@ -525,7 +525,7 @@ public class Rna{
 			//cargar las entradas
 			double[] patron=extraerEntradas(linea);
 			//cargar las salidas deseadas
-			double[] salida_deseada=extraerSalidas(linea); //Aqui tendrá las dos salidas
+			double[] salida_deseada=extraerSalidas(linea); //Aqui tendrï¿½ las dos salidas
 			//ejecutar red neuronal
 			run(patron);
 
@@ -564,14 +564,14 @@ public class Rna{
 			}
 			System.out.println("");
 
-			//calcular las señales de error asociadas 
+			//calcular las seï¿½ales de error asociadas 
 
 			//para las sinapsis oculta-->salida:
 			for (int k=1;k<capa_salida.length;k++)
 			{  
 				//para cada neurona de salida hay que calcular tantos
 				//gradientes locales como sinapsis con las neuronas de la capa oculta
-				señal_error_salida[k]=(salida_deseada[k]-capa_salida[k].out)* capa_salida[k].out*(1- capa_salida[k].out);
+				senal_error_salida[k]=(salida_deseada[k]-capa_salida[k].out)* capa_salida[k].out*(1- capa_salida[k].out);
 
 			}
 
@@ -582,9 +582,9 @@ public class Rna{
 				double suma=0;
 				for (int k=1;k<capa_salida.length;k++) 
 				{
-					suma+=señal_error_salida[k]*oculta_salida[j][k].w;
+					suma+=senal_error_salida[k]*oculta_salida[j][k].w;
 				}
-				señal_error_oculta[j]=suma*capa_oculta[j].out*(1-capa_oculta[j].out);
+				senal_error_oculta[j]=suma*capa_oculta[j].out*(1-capa_oculta[j].out);
 			}
 
 
@@ -700,7 +700,7 @@ public class Rna{
 		//conectando unas con otras. Es decir, se contruye 
 		//la  RNA (red neuronal artificial)
 
-		//añadiremos las neuronas tipo BIAS en la capa de entrada y en 
+		//aï¿½adiremos las neuronas tipo BIAS en la capa de entrada y en 
 		//la oculta
 
 		//capa de entrada
@@ -880,10 +880,10 @@ public class Rna{
 
 
 
-			double[] señal_error_salida=new double[capa_salida.length+1];
+			double[] senal_error_salida=new double[capa_salida.length+1];
 			double[][] grad_local_salida=new double[capa_oculta.length+1][capa_salida.length+1];
 
-			double[] señal_error_oculta=new double[capa_oculta.length+1];
+			double[] senal_error_oculta=new double[capa_oculta.length+1];
 			double[][]grad_local_oculta=new double[capa_entrada.length+1][capa_oculta.length+1];
 
 			double[] delta_entrada=new double[capa_entrada.length+1];   
@@ -937,7 +937,7 @@ public class Rna{
 				double[] salida_deseada=extraerSalidas(linea);
 				//ejecutar red neuronal
 				run(patron);
-				//calcular las señales de error asociadas y los gradientes
+				//calcular las seï¿½ales de error asociadas y los gradientes
 
 
 
@@ -948,16 +948,16 @@ public class Rna{
 					//para cada neurona de salida hay que calcular tantos
 					//gradientes locales como sinapsis con las neuronas de la capa oculta
 					//sigmo 
-					señal_error_salida[k]=(salida_deseada[k]-capa_salida[k].out)*capa_salida[k].derivada ;//capa_salida[k].out*(1- capa_salida[k].out);
+					senal_error_salida[k]=(salida_deseada[k]-capa_salida[k].out)*capa_salida[k].derivada ;//capa_salida[k].out*(1- capa_salida[k].out);
 
-					//señal_error_salida[k]=(salida_deseada[k]-capa_salida[k].out);//tanh
-					//N delta_salida[k]=señal_error_salida[k]*capa_salida[k].derivada;//tanh
+					//senal_error_salida[k]=(salida_deseada[k]-capa_salida[k].out);//tanh
+					//N delta_salida[k]=senal_error_salida[k]*capa_salida[k].derivada;//tanh
 
 					// sigmo
 					for (int j=0;j<capa_oculta.length;j++)
 					{                    
 						// sigmoide: 
-						grad_local_salida[j][k]+=ritmo_aprendizaje*señal_error_salida[k]*capa_oculta[j].out;
+						grad_local_salida[j][k]+=ritmo_aprendizaje*senal_error_salida[k]*capa_oculta[j].out;
 
 
 					}
@@ -972,21 +972,21 @@ public class Rna{
 					{
 
 						//sigmo 
-						suma+=señal_error_salida[k]*oculta_salida[j][k].w;
+						suma+=senal_error_salida[k]*oculta_salida[j][k].w;
 						//n delta_oculta[j]+=delta_salida[k]*oculta_salida[j][k].w*capa_oculta[j].derivada;
 
 					}
 					//sigmo 
-					señal_error_oculta[j]=suma*capa_oculta[j].derivada;//capa_oculta[j].out*(1-capa_oculta[j].out);
+					senal_error_oculta[j]=suma*capa_oculta[j].derivada;//capa_oculta[j].out*(1-capa_oculta[j].out);
 
 
-					//señal_error_oculta[j]=suma;
+					//seï¿½al_error_oculta[j]=suma;
 
 					// sigmo
 					for (int i=0;i<capa_entrada.length;i++)
 					{
 						//sigmo 
-						grad_local_oculta[i][j]+=ritmo_aprendizaje*señal_error_oculta[j]*capa_entrada[i].out;
+						grad_local_oculta[i][j]+=ritmo_aprendizaje*senal_error_oculta[j]*capa_entrada[i].out;
 
 
 
@@ -1077,8 +1077,8 @@ public class Rna{
 			//el problema es que no se determinar un umbral razonable a priori
 			//para el error. Vamos a usar el valor promedio, pues no depende
 			//del numero de patrones
-			//osea , trabajamos con el valor promedio por epoca del error cuadrático medio
-			//ojo:tb pienso que habría que dividir entre el numero de salidas, puesto que a
+			//osea , trabajamos con el valor promedio por epoca del error cuadrï¿½tico medio
+			//ojo:tb pienso que habrï¿½a que dividir entre el numero de salidas, puesto que a
 			//mas salidas, mayor es la funcion coste, aunque los libros de esta materia ni siquiera dividen
 			//entre p (he encontrado un articulo donde si que lo hacen)
 
@@ -1322,10 +1322,10 @@ public class Rna{
 		p_exito=0;
 
 
-		double[] señal_error_salida=new double[capa_salida.length+1];
+		double[] senal_error_salida=new double[capa_salida.length+1];
 		//double[][] grad_local_salida=new double[capa_oculta.length+1][capa_salida.length+1];
 
-		double[] señal_error_oculta=new double[capa_oculta.length+1];
+		double[] senal_error_oculta=new double[capa_oculta.length+1];
 		//double[][]grad_local_oculta=new double[capa_entrada.length+1][capa_oculta.length+1];
 
 
@@ -1362,14 +1362,14 @@ public class Rna{
 			else {}
 			//System.out.print("*************** ups! "+Math.abs(capa_salida[1].out-salida_deseada[1])); 
 
-			//calcular las señales de error asociadas 
+			//calcular las seï¿½ales de error asociadas 
 
 			//para las sinapsis oculta-->salida:
 			for (int k=1;k<capa_salida.length;k++)
 			{  
 				//para cada neurona de salida hay que calcular tantos
 				//gradientes locales como sinapsis con las neuronas de la capa oculta
-				señal_error_salida[k]=(salida_deseada[k]-capa_salida[k].out)* capa_salida[k].out*(1- capa_salida[k].out);
+				senal_error_salida[k]=(salida_deseada[k]-capa_salida[k].out)* capa_salida[k].out*(1- capa_salida[k].out);
 
 			}
 
@@ -1380,9 +1380,9 @@ public class Rna{
 				double suma=0;
 				for (int k=1;k<capa_salida.length;k++) 
 				{
-					suma+=señal_error_salida[k]*oculta_salida[j][k].w;
+					suma+=senal_error_salida[k]*oculta_salida[j][k].w;
 				}
-				señal_error_oculta[j]=suma*capa_oculta[j].out*(1-capa_oculta[j].out);
+				senal_error_oculta[j]=suma*capa_oculta[j].out*(1-capa_oculta[j].out);
 			}
 
 
@@ -1440,10 +1440,10 @@ public class Rna{
 
 
 
-			double[] señal_error_salida=new double[capa_salida.length+1];
+			double[] senal_error_salida=new double[capa_salida.length+1];
 			double[][] grad_local_salida=new double[capa_oculta.length+1][capa_salida.length+1];
 
-			double[] señal_error_oculta=new double[capa_oculta.length+1];
+			double[] senal_error_oculta=new double[capa_oculta.length+1];
 			double[][]grad_local_oculta=new double[capa_entrada.length+1][capa_oculta.length+1];
 
 
@@ -1462,7 +1462,7 @@ public class Rna{
 				
 				//ejecutar red neuronal
 				run(patron);
-				//calcular las señales de error asociadas y los gradientes
+				//calcular las seï¿½ales de error asociadas y los gradientes
 
 
 
@@ -1471,12 +1471,12 @@ public class Rna{
 				{  
 					//para cada neurona de salida hay que calcular tantos
 					//gradientes locales como sinapsis con las neuronas de la capa oculta
-					señal_error_salida[k]=(salida_deseada[k]-capa_salida[k].out)* capa_salida[k].derivada;
+					senal_error_salida[k]=(salida_deseada[k]-capa_salida[k].out)* capa_salida[k].derivada;
 
 					for (int j=0;j<capa_oculta.length;j++)
 					{
 
-						grad_local_salida[j][k]+=ritmo_aprendizaje*señal_error_salida[k]*capa_oculta[j].out;
+						grad_local_salida[j][k]+=ritmo_aprendizaje*senal_error_salida[k]*capa_oculta[j].out;
 					}
 				}
 
@@ -1488,12 +1488,12 @@ public class Rna{
 					{
 						//      traza ("[k][j]"+k+" "+j+"");
 						//      traza (""+oculta_salida[j][k].w);
-						suma+=señal_error_salida[k]*oculta_salida[j][k].w;
+						suma+=senal_error_salida[k]*oculta_salida[j][k].w;
 					}
-					señal_error_oculta[j]=suma*capa_oculta[j].derivada;//capa_oculta[j].out*(1-capa_oculta[j].out);
+					senal_error_oculta[j]=suma*capa_oculta[j].derivada;//capa_oculta[j].out*(1-capa_oculta[j].out);
 					for (int i=0;i<capa_entrada.length;i++)
 					{
-						grad_local_oculta[i][j]+=ritmo_aprendizaje*señal_error_oculta[j]*capa_entrada[i].out;
+						grad_local_oculta[i][j]+=ritmo_aprendizaje*senal_error_oculta[j]*capa_entrada[i].out;
 
 					}
 				}
@@ -1540,8 +1540,8 @@ public class Rna{
 			//el problema es que no se determinar un umbral razonable a priori
 			//para el error. Vamos a usar el valor promedio, pues no depende
 			//del numero de patrones
-			//osea , trabajamos con el valor promedio por epoca del error cuadrático medio
-			//ojo:tb pienso que habría que dividir entre el numero de salidas, puesto que a
+			//osea , trabajamos con el valor promedio por epoca del error cuadrï¿½tico medio
+			//ojo:tb pienso que habrï¿½a que dividir entre el numero de salidas, puesto que a
 			//mas salidas, mayor es la funcion coste, aunque los libros de esta materia ni siquiera dividen
 			//entre p (he encontrado un articulo donde si que lo hacen)
 
